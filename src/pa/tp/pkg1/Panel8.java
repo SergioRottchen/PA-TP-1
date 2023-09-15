@@ -27,16 +27,14 @@ public class Panel8 extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setText("Ejercicio 8");
-
-        jScrollPane1.setViewportView(jTextPane1);
 
         jButton1.setText("Calcular");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -49,27 +47,33 @@ public class Panel8 extends javax.swing.JPanel {
 
         jLabel3.setText("El mayor elemento es: ");
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addGap(141, 141, 141)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(jLabel3)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)))))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,44 +82,55 @@ public class Panel8 extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(49, 49, 49)
                         .addComponent(jLabel2)
-                        .addGap(47, 47, 47)
+                        .addGap(51, 51, 51)
                         .addComponent(jButton1)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel3)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String Texto = jTextPane1.getText();
+        String Texto = jTextArea1.getText();
         Texto = Texto.trim();
         String[] Vector = Texto.split("\n");
         int[] Vectint = new int[30];
         int Pmenor, Pmayor, Mayor,var;
         
-        for(int i=0;i<Vector.length;i++){
-        Vectint[i]= Integer.parseInt(Vector[i]);
-        }
+        
+        for (int i = 0; i < Vector.length; i++) {
+            
+    try {
+        Vectint[i] = Integer.parseInt(Vector[i]);
+    } catch (Exception e) {
+        System.err.println("Error al convertir la cadena en un número en la posición: " + i);
+           }
+}
+        
         Mayor =Vectint[0]; 
         var = Vectint[0];
+        Pmenor=0;
+        Pmayor=0;
+        System.out.println("Mayor: "+Mayor+"var"+var+"Pmenor: " +Pmenor+"Pmayor "+Pmayor);
         for(int i=0;i<Vectint.length;i++){
-        if(var <Vectint[i]){
+            
+        if(Vectint[i] <var){
             var=Vectint[i];
             Pmenor=i;
             }
-        if (Mayor>Vectint[0]){
-            Mayor = Vectint[0];
+        if (Vectint[i]>Mayor){
+            Mayor = Vectint[i];
             Pmayor=i;
         }
-        jLabel2 = jLabel2.
         
         }
-        
+        jLabel2.setText("La posicion del menor es: "+ String.valueOf(Pmenor));
+        jLabel3.setText("El mayor elemento es: "+ String.valueOf(Mayor)+"y su posición es: "+String.valueOf(Pmayor) );
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -126,7 +141,7 @@ public class Panel8 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
